@@ -1,0 +1,5 @@
+# === CONFIG ===
+BASE_URL = "https://www.cv-prod-euwest-2.arista.io/cvpservice"
+ACCESS_TOKEN = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkaWQiOjY5NTkxNjIyNjczNTUxNTM3NDksImRzdCI6InVzZXIiLCJleHAiOjE3NjY1NjMyODcsImlhdCI6MTc2NjQ3Njg4OCwib2dpIjo2OTU5MTYyMjY3MzU1MDY5MjM2LCJvZ24iOiJrYXNpY2xvdWQiLCJzaWQiOiIwMTliNGEzYS0zNDg4LTc3NzktYmJkYy1lOWJhY2Q0M2UxMGYifQ._sA72b5yUCmrepezqZXpvMoF146dMfgX4dIcnf1kHZMI3JtPaQNGj1_4WfNwXSGZthIwUVTCrW2s3d2J6xjB3w"
+TARGET_HOSTNAME = "KASI-LOS5-R201-BG01"
+START_INDEX = 28  # change this to resume from a later index
