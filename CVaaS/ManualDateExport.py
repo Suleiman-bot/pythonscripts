@@ -15,45 +15,40 @@ import time
 from datetime import datetime, timedelta, timezone
 import pytz  # pip install pytz if needed
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-from config import BASE_URL, ACCESS_TOKEN, TARGET_HOSTNAME
+from config import BASE_URL, ACCESS_TOKEN, TARGET_HOSTNAME, TARGET_DATE
 
 
 # === Construct magic login link ===
 magic_link = f"https://www.cv-prod-euwest-2.arista.io/api/v1/oauth?invitation={ACCESS_TOKEN}"
 
 
-# Generate Active for previous day using a fixed date or automatic
-def generate_active_for_previous_day_local(fixed_date_str=None):
+# Generate Active for target date
+def generate_active_for_target_date_local(target_date_str=None):
     """
-    If fixed_date_str is provided (format: DD/MM/YYYY),
-    use it as the 'current date' and return the previous day's 00:00:00
-    in Africa/Lagos timezone.
-
-    If fixed_date_str is None, auto-detect today.
-    Returns timestamp in milliseconds.
+    Returns 'active' timestamp in milliseconds for the target date's 00:00:00
+    in local timezone (Africa/Lagos, UTC+1)
+    
+    Args:
+        target_date_str: Date string in format "M/D/YYYY". If None, uses TARGET_DATE from config
     """
+    if target_date_str is None:
+        target_date_str = TARGET_DATE
+        
     local_tz = pytz.timezone("Africa/Lagos")
-
-    if fixed_date_str:
-        # Parse manually supplied date (e.g. "22/11/2025")
-        day, month, year = map(int, fixed_date_str.split("/"))
-        base_date = datetime(year, month, day)
-    else:
-        # Automatic mode (original behaviour)
-        base_date = datetime.now(local_tz)
-
-    # Compute previous day at midnight
-    prev_day = datetime(base_date.year, base_date.month, base_date.day) - timedelta(days=1)
-
-    # Localize to Africa/Lagos
-    prev_day_local = local_tz.localize(prev_day)
-
-    # Convert to UTC timestamp in ms
-    return int(prev_day_local.timestamp() * 1000)
+    
+    # Parse the target date string in format "M/D/YYYY"
+    target_date = datetime.strptime(target_date_str, "%m/%d/%Y")
+    
+    # Localize to timezone without adding extra hours
+    target_date_local = local_tz.localize(target_date)
+    
+    # Convert to UTC timestamp in milliseconds
+    active_ts = int(target_date_local.timestamp() * 1000)
+    return active_ts
 
 
 # Time range constants (used in each URL)
-ACTIVE = generate_active_for_previous_day_local("22/11/2025")
+ACTIVE = generate_active_for_target_date_local()
 FROM_OFFSET = 1000
 TO_OFFSET = 86400000
 

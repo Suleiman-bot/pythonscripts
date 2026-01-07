@@ -15,35 +15,40 @@ import time
 from datetime import datetime, timedelta, timezone
 import pytz  # pip install pytz if needed
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-from config import BASE_URL, ACCESS_TOKEN, TARGET_HOSTNAME
+from config import BASE_URL, ACCESS_TOKEN, TARGET_HOSTNAME, TARGET_DATE
 
 
 # === Construct magic login link ===
 magic_link = f"https://www.cv-prod-euwest-2.arista.io/api/v1/oauth?invitation={ACCESS_TOKEN}"
 
 
-#Generate Active for previous day
-def generate_active_for_previous_day_local():
+#Generate Active for target date
+def generate_active_for_target_date_local(target_date_str=None):
     """
-    Returns 'active' timestamp in milliseconds for the previous day's 00:00:00
+    Returns 'active' timestamp in milliseconds for the target date's 00:00:00
     in local timezone (Africa/Lagos, UTC+1)
+    
+    Args:
+        target_date_str: Date string in format "M/D/YYYY". If None, uses TARGET_DATE from config
     """
+    if target_date_str is None:
+        target_date_str = TARGET_DATE
+        
     local_tz = pytz.timezone("Africa/Lagos")
-    now_local = datetime.now(local_tz)
-
-    # Previous day at 00:00:00
-    prev_day_start = datetime(now_local.year, now_local.month, now_local.day) - timedelta(days=1)
-
+    
+    # Parse the target date string in format "M/D/YYYY"
+    target_date = datetime.strptime(target_date_str, "%m/%d/%Y")
+    
     # Localize to timezone without adding extra hours
-    prev_day_start_local = local_tz.localize(prev_day_start)
-
+    target_date_local = local_tz.localize(target_date)
+    
     # Convert to UTC timestamp in milliseconds
-    active_ts = int(prev_day_start_local.timestamp() * 1000)
+    active_ts = int(target_date_local.timestamp() * 1000)
     return active_ts
 
 
 # Time range constants (used in each URL)
-ACTIVE = generate_active_for_previous_day_local()
+ACTIVE = generate_active_for_target_date_local()
 FROM_OFFSET = 1000
 TO_OFFSET = 86400000
 
@@ -342,10 +347,28 @@ def export_via_gui(serial):
             print(f"🔎 Opening URL: {url}")
             driver.get(url)
 
+            print(f"   Waiting for page to fully load...")
+
+           # 1. Wait for document readyState = complete (base page load)
             try:
-                WebDriverWait(driver, 1).until(lambda d: find_export_button_fast(d) is not None)
+                WebDriverWait(driver, 35).until(  # increased from 10s → 35s
+                    lambda d: d.execute_script("return document.readyState") == "complete"
+            )
             except TimeoutException:
-                pass
+             print("   Warning: document.readyState did not reach 'complete' within 20s")
+
+            # 2. Additional fixed pause to allow JavaScript/React to render the data table
+            #    (CVaaS charts and tables often load data asynchronously after readyState)
+            time.sleep(4)  # was effectively ~0-1s before, now a solid 4-second buffer
+
+            # 3. Wait explicitly for the export button to appear (doubled timeout)
+            try:
+                WebDriverWait(driver, 15).until(  # increased from 5s → 10s
+                    lambda d: find_export_button_fast(d) is not None
+        )
+            except TimeoutException:
+             print("Export button not detected quickly — will fall back to slower search")
+             pass
 
             start = time.perf_counter()
             succeeded = click_export_and_handle_modal(driver, wait, fast_mode=True)

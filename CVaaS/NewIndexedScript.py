@@ -15,35 +15,40 @@ import time
 from datetime import datetime, timedelta, timezone
 import pytz  # pip install pytz if needed
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-from config import BASE_URL, ACCESS_TOKEN, TARGET_HOSTNAME, START_INDEX
+from config import BASE_URL, ACCESS_TOKEN, TARGET_HOSTNAME, START_INDEX, TARGET_DATE
 
 
 # === Construct magic login link ===
 magic_link = f"https://www.cv-prod-euwest-2.arista.io/api/v1/oauth?invitation={ACCESS_TOKEN}"
 
 
-# Generate Active for previous day
-def generate_active_for_previous_day_local():
+# Generate Active for target date
+def generate_active_for_target_date_local(target_date_str=None):
     """
-    Returns 'active' timestamp in milliseconds for the previous day's 00:00:00
+    Returns 'active' timestamp in milliseconds for the target date's 00:00:00
     in local timezone (Africa/Lagos, UTC+1)
+    
+    Args:
+        target_date_str: Date string in format "M/D/YYYY". If None, uses TARGET_DATE from config
     """
+    if target_date_str is None:
+        target_date_str = TARGET_DATE
+        
     local_tz = pytz.timezone("Africa/Lagos")
-    now_local = datetime.now(local_tz)
-
-    # Previous day at 00:00:00
-    prev_day_start = datetime(now_local.year, now_local.month, now_local.day) - timedelta(days=1)
-
+    
+    # Parse the target date string in format "M/D/YYYY"
+    target_date = datetime.strptime(target_date_str, "%m/%d/%Y")
+    
     # Localize to timezone without adding extra hours
-    prev_day_start_local = local_tz.localize(prev_day_start)
-
+    target_date_local = local_tz.localize(target_date)
+    
     # Convert to UTC timestamp in milliseconds
-    active_ts = int(prev_day_start_local.timestamp() * 1000)
+    active_ts = int(target_date_local.timestamp() * 1000)
     return active_ts
 
 
 # Time range constants
-ACTIVE = generate_active_for_previous_day_local()
+ACTIVE = generate_active_for_target_date_local()
 FROM_OFFSET = 1000
 TO_OFFSET = 86400000
 

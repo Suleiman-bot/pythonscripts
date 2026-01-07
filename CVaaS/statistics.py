@@ -9,7 +9,7 @@ import csv
 from datetime import datetime, timedelta
 import pytz
 import urllib3
-from config import ACCESS_TOKEN
+from config import ACCESS_TOKEN, TARGET_DATE
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -23,16 +23,34 @@ except Exception:
 magic_link = f"https://www.cv-prod-euwest-2.arista.io/api/v1/oauth?invitation={ACCESS_TOKEN}"
 
 
-def generate_active_for_previous_day_local():
+def generate_active_for_target_date_local(target_date_str=None):
+    """
+    Returns 'active' timestamp in milliseconds for the target date's 00:00:00
+    in local timezone (Africa/Lagos, UTC+1)
+    
+    Args:
+        target_date_str: Date string in format "M/D/YYYY". If None, uses TARGET_DATE from config
+    """
+    if target_date_str is None:
+        target_date_str = TARGET_DATE
+        
     local_tz = pytz.timezone("Africa/Lagos")
-    now_local = datetime.now(local_tz)
-    prev_day_start = datetime(now_local.year, now_local.month, now_local.day) - timedelta(days=1)
-    prev_day_start_local = local_tz.localize(prev_day_start)
-    return int(prev_day_start_local.timestamp() * 1000)
+    
+    # Parse the target date string in format "M/D/YYYY"
+    target_date = datetime.strptime(target_date_str, "%m/%d/%Y")
+    
+    # Localize to timezone without adding extra hours
+    target_date_local = local_tz.localize(target_date)
+    
+    # Convert to UTC timestamp in milliseconds
+    active_ts = int(target_date_local.timestamp() * 1000)
+    return active_ts
 
-ACTIVE = generate_active_for_previous_day_local()
+ACTIVE = generate_active_for_target_date_local()
 FROM_OFFSET = 1000
 TO_OFFSET = 86400000
+# === End of active generation function ===
+
 
 # --- Links (constants) but include active/from/to via variables above ---
 BITRATE_LINKS = {
@@ -347,10 +365,10 @@ def run():
 
         # Save DOCX files
         save_docx_summary(DOCX_BITRATE_PATH, "Bitrate Summary", bitrate_results, unit="Mbps")
-        save_docx_summary(DOCX_PACKET_PATH, "Packet rate Summary", packet_results)
+        save_docx_summary(DOCX_PACKET_PATH, "Packet rate Summary", packet_results, unit="kpps")
         # Also save matching CSV tables
         save_csv_summary(CSV_BITRATE_PATH, "Bitrate Summary", bitrate_results, unit="Mbps")
-        save_csv_summary(CSV_PACKET_PATH, "Packet rate Summary", packet_results)
+        save_csv_summary(CSV_PACKET_PATH, "Packet rate Summary", packet_results, unit="kpps")
         print(f"Saved DOCXs to: {DOCX_BITRATE_PATH} and {DOCX_PACKET_PATH}")
         print(f"Saved CSVs to: {CSV_BITRATE_PATH} and {CSV_PACKET_PATH}")
 
