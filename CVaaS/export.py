@@ -246,14 +246,11 @@ def click_export_and_handle_modal(driver, wait, click_retries=2, fast_mode=True)
 
 # Main selenium flow
 def export_via_gui(serial):
-    print("🌐 Opening Selenium with clean Edge profile...")
+    print("🌐 Opening Selenium with Edge profile...")
     options = webdriver.EdgeOptions()
     options.add_argument("--start-maximized")
-    options.add_argument(
-        r"--user-data-dir=C:\Users\SuleimanAbdulsalam\AppData\Local\Microsoft\Edge\User Data\SeleniumProfile"
-    )
-    options.add_argument("profile-directory=Default")  # Default inside SeleniumProfile
-
+    options.add_argument(r"--user-data-dir=C:\Users\SuleimanAbdulsalam\AppData\Local\Microsoft\Edge\User Data\SeleniumProfile")
+    options.add_argument("profile-directory=Default")
     driver = webdriver.Edge(options=options)
 
         # === Open CVaaS login with token ===
@@ -351,7 +348,7 @@ def export_via_gui(serial):
 
            # 1. Wait for document readyState = complete (base page load)
             try:
-                WebDriverWait(driver, 35).until(  # increased from 10s → 35s
+                WebDriverWait(driver, 60).until(  # increased from 10s → 60s
                     lambda d: d.execute_script("return document.readyState") == "complete"
             )
             except TimeoutException:
@@ -363,7 +360,7 @@ def export_via_gui(serial):
 
             # 3. Wait explicitly for the export button to appear (doubled timeout)
             try:
-                WebDriverWait(driver, 15).until(  # increased from 5s → 10s
+                WebDriverWait(driver, 60).until(  # increased from 5s → 60s
                     lambda d: find_export_button_fast(d) is not None
         )
             except TimeoutException:

@@ -1,0 +1,48 @@
+KASI-LOS5-R201-BG01
+Memory Usage
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/JPE20050335?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22JPE20050335%22%2C%22metricKey%22%3A%22DEVICE_MEMORY_USAGE_PERCENTAGE%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22JPE20050335%22%2C%22deviceId%22%3A%22JPE20050335%22%7D%7D&modalPanel=STATISTICS
+
+CPU Utilization
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/JPE20050335?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22JPE20050335%22%2C%22metricKey%22%3A%22DEVICE_CPU%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22JPE20050335%22%2C%22deviceId%22%3A%22JPE20050335%22%7D%7D&modalPanel=STATISTICS
+
+KASI-LOS5-R201-EOR1
+Memory Usage
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/SSJ17243133?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22SSJ17243133%22%2C%22metricKey%22%3A%22DEVICE_MEMORY_USAGE_PERCENTAGE%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22SSJ17243133%22%2C%22deviceId%22%3A%22SSJ17243133%22%7D%7D&modalPanel=STATISTICS
+
+CPU Utilization
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/SSJ17243133?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22SSJ17243133%22%2C%22metricKey%22%3A%22DEVICE_CPU%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22SSJ17243133%22%2C%22deviceId%22%3A%22SSJ17243133%22%7D%7D&modalPanel=STATISTICS
+
+KASI-LOS5-R101-TOR2
+Memory Usage
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/SSJ17243158?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22SSJ17243158%22%2C%22metricKey%22%3A%22DEVICE_MEMORY_USAGE_PERCENTAGE%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22SSJ17243158%22%2C%22deviceId%22%3A%22SSJ17243158%22%7D%7D&modalPanel=STATISTICS
+
+CPU Utilization
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/SSJ17243158?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22SSJ17243158%22%2C%22metricKey%22%3A%22DEVICE_CPU%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22SSJ17243158%22%2C%22deviceId%22%3A%22SSJ17243158%22%7D%7D&modalPanel=STATISTICS
+
+KASI-LOS5-R201-EOR2
+Memory Usage
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/JPE17015583?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22JPE17015583%22%2C%22metricKey%22%3A%22DEVICE_MEMORY_USAGE_PERCENTAGE%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22JPE17015583%22%2C%22deviceId%22%3A%22JPE17015583%22%7D%7D&modalPanel=STATISTICS
+
+CPU Utilization
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/JPE17015583?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22JPE17015583%22%2C%22metricKey%22%3A%22DEVICE_CPU%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22JPE17015583%22%2C%22deviceId%22%3A%22JPE17015583%22%7D%7D&modalPanel=STATISTICS
+
+KASI-LOS5-R201-TOR1
+Memory Usage
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/HSH16170211?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22HSH16170211%22%2C%22metricKey%22%3A%22DEVICE_MEMORY_USAGE_PERCENTAGE%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22HSH16170211%22%2C%22deviceId%22%3A%22HSH16170211%22%7D%7D&modalPanel=STATISTICS
+
+CPU Utilization
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/HSH16170211?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22HSH16170211%22%2C%22metricKey%22%3A%22DEVICE_CPU%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22HSH16170211%22%2C%22deviceId%22%3A%22HSH16170211%22%7D%7D&modalPanel=STATISTICS
+
+KASI-HQ-FLC1-TOR1
+Memory Usage
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/WTW22430298?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22WTW22430298%22%2C%22metricKey%22%3A%22DEVICE_MEMORY_USAGE_PERCENTAGE%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22WTW22430298%22%2C%22deviceId%22%3A%22WTW22430298%22%7D%7D&modalPanel=STATISTICS
+
+CPU Utilization
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/WTW22430298?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22WTW22430298%22%2C%22metricKey%22%3A%22DEVICE_CPU%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22WTW22430298%22%2C%22deviceId%22%3A%22WTW22430298%22%7D%7D&modalPanel=STATISTICS
+
+KASI-HQ-FLD1-TOR2
+Memory Usage
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/WTW22421221?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22WTW22421221%22%2C%22metricKey%22%3A%22DEVICE_MEMORY_USAGE_PERCENTAGE%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22WTW22421221%22%2C%22deviceId%22%3A%22WTW22421221%22%7D%7D&modalPanel=STATISTICS
+
+CPU Utilization
+https://www.cv-prod-euwest-2.arista.io/cv/devices/processes/WTW22421221?active=1772214597580n0&fromOffset=67797558&toOffset=18602442&modal=true&modalParams=%7B%22collisionWarning%22%3Afalse%2C%22datasetId%22%3A%22WTW22421221%22%2C%22metricKey%22%3A%22DEVICE_CPU%22%2C%22metricParams%22%3A%7B%22memberId%22%3A%221%22%2C%22datasetId%22%3A%22WTW22421221%22%2C%22deviceId%22%3A%22WTW22421221%22%7D%7D&modalPanel=STATISTICS

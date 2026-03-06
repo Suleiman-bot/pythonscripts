@@ -1,0 +1,8 @@
+# === CONFIG.PY EXAMPLE ===
+# Copy this file to config.py and fill in your actual values
+
+BASE_URL = "https://www.cv-prod-euwest-2.arista.io/cvpservice"
+ACCESS_TOKEN = "your_jwt_token_here"  # Replace with your actual JWT token from iot.tuya.com
+TARGET_HOSTNAME = "DEVICE_HOSTNAME"   # e.g., KASI-LOS5-R201-BG01
+START_INDEX = 0                        # Start index for processing (0 for beginning)
+TARGET_DATE = "M/D/YYYY"               # Format: "M/D/YYYY" - e.g., "3/5/2026"
