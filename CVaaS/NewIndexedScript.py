@@ -255,6 +255,7 @@ def export_via_gui(serial):
     options.add_argument("profile-directory=Default")
 
     driver = webdriver.Edge(options=options)
+    wait = WebDriverWait(driver, 30)
 
     print("Opening CVaaS login link...")
     driver.get(magic_link)
@@ -264,7 +265,7 @@ def export_via_gui(serial):
 
     # URLs (same as before)
     urls = [
-     # Ethernet1 Traffic Counter
+    # Ethernet1 Traffic Counter
     f"https://www.cv-prod-euwest-2.arista.io/cv/devices/ethernet-stats/JPE20050335?active={ACTIVE}&fromOffset={FROM_OFFSET}&toOffset={TO_OFFSET}&modal=true&modalParams=%7B%22datasetId%22%3A%22JPE20050335%22%2C%22metricKey%22%3A%22INTERFACE_IN_BITRATE%22%2C%22metricParams%22%3A%7B%22aggregationIntervalOverride%22%3A%221m%22%2C%22deviceId%22%3A%22JPE20050335%22%2C%22intf%22%3A%22Ethernet1%22%7D%7D&modalPanel=RAW_DATA&metric=jitter",
     f"https://www.cv-prod-euwest-2.arista.io/cv/devices/ethernet-stats/JPE20050335?active={ACTIVE}&fromOffset={FROM_OFFSET}&toOffset={TO_OFFSET}&modal=true&modalParams=%7B%22datasetId%22%3A%22JPE20050335%22%2C%22metricKey%22%3A%22INTERFACE_OUT_BITRATE%22%2C%22metricParams%22%3A%7B%22aggregationIntervalOverride%22%3A%221m%22%2C%22deviceId%22%3A%22JPE20050335%22%2C%22intf%22%3A%22Ethernet1%22%7D%7D&modalPanel=RAW_DATA&metric=jitter",
     f"https://www.cv-prod-euwest-2.arista.io/cv/devices/ethernet-stats/JPE20050335?active={ACTIVE}&fromOffset={FROM_OFFSET}&toOffset={TO_OFFSET}&modal=true&modalParams=%7B%22datasetId%22%3A%22JPE20050335%22%2C%22metricKey%22%3A%22INTERFACE_IN_UCAST_RATE%22%2C%22metricParams%22%3A%7B%22aggregationIntervalOverride%22%3A%221m%22%2C%22deviceId%22%3A%22JPE20050335%22%2C%22intf%22%3A%22Ethernet1%22%7D%7D&modalPanel=RAW_DATA&metric=jitter",
@@ -328,8 +329,6 @@ def export_via_gui(serial):
     f"https://www.cv-prod-euwest-2.arista.io/cv/devices/connectivity?active={ACTIVE}&fromOffset={FROM_OFFSET}&toOffset={TO_OFFSET}&modal=true&modalParams=%7B%22alternativeTitle%22%3A%22Packet+Loss+for+KASI-LOS5-R201-BG01+%28inet+%2F+Ethernet3%29+to+DOL_PRI_to_TATA_East_US%22%2C%22datasetId%22%3A%22JPE20050335%22%2C%22metricKey%22%3A%22PACKET_LOSS_VRF%22%2C%22metricParams%22%3A%7B%22deviceId%22%3A%22JPE20050335%22%2C%22hostVrfIntf%22%3A%22Ethernet3%22%2C%22hostVrfPair%22%3A%7B%22hostName%22%3A%22DOL_PRI_to_TATA_East_US%22%2C%22vrfName%22%3A%22inet%22%7D%7D%7D&modalPanel=RAW_DATA&metric=loss",
     f"https://www.cv-prod-euwest-2.arista.io/cv/devices/connectivity?active={ACTIVE}&fromOffset={FROM_OFFSET}&toOffset={TO_OFFSET}&modal=true&modalParams=%7B%22alternativeTitle%22%3A%22Packet+Loss+for+KASI-LOS5-R201-BG01+%28inet+%2F+Ethernet3%29+to+DOL_PRI_to_Hurri_West_US%22%2C%22datasetId%22%3A%22JPE20050335%22%2C%22metricKey%22%3A%22PACKET_LOSS_VRF%22%2C%22metricParams%22%3A%7B%22deviceId%22%3A%22JPE20050335%22%2C%22hostVrfIntf%22%3A%22Ethernet3%22%2C%22hostVrfPair%22%3A%7B%22hostName%22%3A%22DOL_PRI_to_Hurri_West_US%22%2C%22vrfName%22%3A%22inet%22%7D%7D%7D&modalPanel=RAW_DATA&metric=loss",
     ]
-
-    wait = WebDriverWait(driver, 30)
 
     print(f"📊 Starting export loop from index {START_INDEX}/{len(urls)}")
 

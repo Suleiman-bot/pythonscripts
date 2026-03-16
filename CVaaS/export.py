@@ -348,19 +348,19 @@ def export_via_gui(serial):
 
            # 1. Wait for document readyState = complete (base page load)
             try:
-                WebDriverWait(driver, 60).until(  # increased from 10s → 60s
+                WebDriverWait(driver, 120).until(  # increased from 10s → 120s
                     lambda d: d.execute_script("return document.readyState") == "complete"
             )
             except TimeoutException:
-             print("   Warning: document.readyState did not reach 'complete' within 20s")
+             print("   Warning: document.readyState did not reach 'complete' within 30s")
 
             # 2. Additional fixed pause to allow JavaScript/React to render the data table
             #    (CVaaS charts and tables often load data asynchronously after readyState)
-            time.sleep(4)  # was effectively ~0-1s before, now a solid 4-second buffer
+            time.sleep(20)  # was effectively ~0-1s before, now a solid 10-second buffer
 
             # 3. Wait explicitly for the export button to appear (doubled timeout)
             try:
-                WebDriverWait(driver, 60).until(  # increased from 5s → 60s
+                WebDriverWait(driver, 240).until(  # increased from 5s → 240s
                     lambda d: find_export_button_fast(d) is not None
         )
             except TimeoutException:

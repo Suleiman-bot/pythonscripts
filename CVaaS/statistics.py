@@ -203,7 +203,7 @@ def find_min_max_for_metric(driver, label="", timeout=12, poll=0.5):
 # Open each URL and extract metric values
 def collect_metrics(driver, groups, per_page_timeout=12):
     results = {}
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
     for name, urls in groups.items():
         results[name] = {"inbound_min": "", "inbound_max": "", "outbound_min": "", "outbound_max": ""}
 
@@ -348,7 +348,7 @@ def run():
         print("Opening CVaaS login link...")
         driver.get(magic_link)
         try:
-            WebDriverWait(driver, 10).until(lambda d: d.current_url != magic_link or d.execute_script("return document.readyState") == "complete")
+            WebDriverWait(driver, 30).until(lambda d: d.current_url != magic_link or d.execute_script("return document.readyState") == "complete")
         except TimeoutException:
             pass
 

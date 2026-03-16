@@ -261,7 +261,7 @@ def run():
         print("Opening CVaaS login link...")
         driver.get(magic_link)
         try:
-            WebDriverWait(driver, 10).until(lambda d: d.current_url != magic_link or d.execute_script("return document.readyState") == "complete")
+            WebDriverWait(driver, 30).until(lambda d: d.current_url != magic_link or d.execute_script("return document.readyState") == "complete")
         except TimeoutException:
             pass
 
